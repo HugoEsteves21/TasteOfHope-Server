@@ -46,6 +46,10 @@ router.post("/basket", async (req, res, next) => {
       $push: { basket: newBasket._id },
     });
 
+    const basketGiver = await Basket.findByIdAndUpdate(newBasket._id, {
+      $push: { giver: currentUser },
+    });
+
     if (basketType === "Hope" && products.length === 1) {
       const updateUnits = await User.findByIdAndUpdate(currentUser, {
         $push: { givenUnits: newBasket._id },
@@ -66,12 +70,31 @@ router.put("/basket/:id", async (req, res, next) => {
   const { id } = req.params;
   const { products, price } = req.body;
 
+  const currentUser = req.payload._id;
+  const currentUserType = req.payload.userType;
+
   try {
-    const updatedBasket = await Basket.findByIdAndUpdate(
-      id,
-      { products, price },
-      { new: true }
-    );
+    if (currentUserType === "Donor") {
+      const updatedBasket = await Basket.findByIdAndUpdate(
+        id,
+        { products, price },
+        { new: true }
+      );
+    } else {
+      const goodsReceiver = await User.findByIdAndUpdate(currentUser, {
+        $push: { receiver: id },
+      });
+
+      if (products.length !== 1) {
+        const basketReceived = await User.findByIdAndUpdate(currentUser, {
+          $push: { receivedBaskets: id },
+        });
+      } else {
+        const unitReceived = await User.findByIdAndUpdate(currentUser, {
+          $push: { receivedUnits: id },
+        });
+      }
+    }
 
     res.status(200).json(updatedBasket);
   } catch (error) {
