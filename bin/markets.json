@@ -1,0 +1,32 @@
+{
+    "market": [
+        {
+            "name": "Pingo Doce Santa Apolónia",
+            "adress": "Av. Infante Dom Henrique 1, 1100-486 Lisboa",
+            "brand": "Pingo Doce",
+            "description": "",
+            "basket": []
+        },
+        {
+            "name": "Pingo Doce Campo Pequeno",
+            "adress": "Centro De Lazer, Campo Pequeno 201, 1000-306 Lisboa",
+            "brand": "Pingo Doce",
+            "description": "",
+            "basket": []
+        },
+        {
+            "name": "Pingo Doce Telheiras",
+            "adress": "Azinhaga Ulmeiros Rua Projectada À, 1700-773 Lisboa",
+            "brand": "Pingo Doce",
+            "description": "",
+            "basket": []
+        },
+        {
+            "name": "Pingo Doce Barreiro - Vila Chã",
+            "adress": "M510 Quinta Da Graciosa 5, 2830-003 Barreiro",
+            "brand": "Pingo Doce",
+            "description": "",
+            "basket": []
+        }
+    ]
+}
