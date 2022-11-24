@@ -42,6 +42,8 @@ router.post("/basket", async (req, res, next) => {
       receiver,
     });
 
+    res.status(201).json(currentUser);
+
     const updateMarket = await Market.findByIdAndUpdate(marketId, {
       $push: { basket: newBasket._id },
     });
@@ -80,6 +82,8 @@ router.put("/basket/:id", async (req, res, next) => {
         { products, price },
         { new: true }
       );
+
+      res.status(200).json(updatedBasket);
     } else {
       const goodsReceiver = await User.findByIdAndUpdate(currentUser, {
         $push: { receiver: id },
