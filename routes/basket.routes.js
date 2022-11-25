@@ -3,8 +3,9 @@ const Basket = require("../models/Basket.model");
 const Market = require("../models/Market.model");
 const Product = require("../models/Product.model");
 const User = require("../models/User.model");
+const { isAuthenticated } = require("../middleware/jwt.middleware");
 
-router.post("/create/market", async (req, res, next) => {
+router.post("/create/market", isAuthenticated, async (req, res, next) => {
   try {
     const marketsDb = await Market.create(req.body);
     //const productsDb = await Product.create(productsData);
@@ -15,7 +16,7 @@ router.post("/create/market", async (req, res, next) => {
   }
 });
 
-router.post("/create/product", async (req, res, next) => {
+router.post("/create/product", isAuthenticated, async (req, res, next) => {
   try {
     const productsDb = await Product.create(req.body);
 
@@ -25,13 +26,14 @@ router.post("/create/product", async (req, res, next) => {
   }
 });
 
-router.post("/basket", async (req, res, next) => {
+router.post("/basket", isAuthenticated, async (req, res, next) => {
   const { basketType, marketId, products, received, price, giver, receiver } =
     req.body;
 
   const currentUser = req.payload._id;
 
   try {
+    // create a basket
     const newBasket = await Basket.create({
       basketType,
       market: marketId,
@@ -42,14 +44,17 @@ router.post("/basket", async (req, res, next) => {
       receiver,
     });
 
+    // adding the basket to the market where it is created
     const updateMarket = await Market.findByIdAndUpdate(marketId, {
       $push: { basket: newBasket._id },
     });
 
+    // defininf the user that created the basket
     const basketGiver = await Basket.findByIdAndUpdate(newBasket._id, {
       $push: { giver: currentUser },
     });
 
+    // defining which type of basket the user created and adding it to the user profile
     if (basketType === "Hope" && products.length === 1) {
       const updateUnits = await User.findByIdAndUpdate(currentUser, {
         $push: { givenUnits: newBasket._id },
@@ -60,13 +65,18 @@ router.post("/basket", async (req, res, next) => {
       });
     }
 
+    // add each product that we choose to the basket
+    const updateBasketProd = await Basket.findByIdAndUpdate(newBasket._id, {
+      $push: { products: products.map((product) => product._id) },
+    });
+
     res.status(201).json(newBasket);
   } catch (error) {
     next(error);
   }
 });
 
-router.put("/basket/:id", async (req, res, next) => {
+router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
   const { products, price } = req.body;
 
@@ -102,7 +112,7 @@ router.put("/basket/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/basket/:id", async (req, res, next) => {
+router.delete("/basket/:id", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -116,7 +126,7 @@ router.delete("/basket/:id", async (req, res, next) => {
   }
 });
 
-router.get("/market/:id/baskets", async (req, res, next) => {
+router.get("/market/:id/baskets", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
 
   try {
