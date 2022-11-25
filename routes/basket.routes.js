@@ -8,7 +8,6 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 router.post("/create/market", isAuthenticated, async (req, res, next) => {
   try {
     const marketsDb = await Market.create(req.body);
-    //const productsDb = await Product.create(productsData);
 
     res.status(201).json(marketsDb);
   } catch (error) {
