@@ -27,7 +27,7 @@ router.post("/create/product", isAuthenticated, async (req, res, next) => {
 });
 
 router.post("/basket", isAuthenticated, async (req, res, next) => {
-  const { basketType, marketId, products, received, price, giver, receiver } =
+  const { basketType, market, products, received, price, giver, receiver } =
     req.body;
 
   const currentUser = req.payload._id;
@@ -36,7 +36,7 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
     // create a basket
     const newBasket = await Basket.create({
       basketType,
-      market: marketId,
+      market,
       products,
       received,
       price,
@@ -45,7 +45,7 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
     });
 
     // adding the basket to the market where it is created
-    const updateMarket = await Market.findByIdAndUpdate(marketId, {
+    const updateMarket = await Market.findByIdAndUpdate(market, {
       $push: { basket: newBasket._id },
     });
 
@@ -67,11 +67,6 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
       });
     }
 
-    // add each product that we choose to the basket
-    const updateBasketProd = await Basket.findByIdAndUpdate(newBasket._id, {
-      $push: { products: products.map((product) => product._id) },
-    });
-
     res.status(201).json(newBasket);
   } catch (error) {
     next(error);
@@ -80,7 +75,7 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
 
 router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
-  const { products, price } = req.body;
+  const { products, price, received } = req.body;
 
   const currentUser = req.payload._id;
   const currentUserType = req.payload.userType;
@@ -94,6 +89,8 @@ router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
         { products, price },
         { new: true }
       );
+
+      res.status(200).json(updatedBasket);
     } else {
       // add a user to the basket that is received
       const goodsReceiver = await Basket.findByIdAndUpdate(id, {
@@ -111,9 +108,16 @@ router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
           $push: { receivedUnits: id },
         });
       }
-    }
 
-    res.status(200).json(updatedBasket);
+      // add changes to the basket
+      const updatedBasket = await Basket.findByIdAndUpdate(
+        id,
+        { received },
+        { new: true }
+      );
+
+      res.status(200).json(updatedBasket);
+    }
   } catch (error) {
     next(error);
   }
