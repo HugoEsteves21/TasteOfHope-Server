@@ -49,18 +49,20 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
       $push: { basket: newBasket._id },
     });
 
-    // defininf the user that created the basket
+    // defining the user that created the basket
     const basketGiver = await Basket.findByIdAndUpdate(newBasket._id, {
       $push: { giver: currentUser },
     });
 
     // defining which type of basket the user created and adding it to the user profile
     if (basketType === "Hope" && products.length === 1) {
+      // if the basket only has one product add it to user's given units array
       const updateUnits = await User.findByIdAndUpdate(currentUser, {
         $push: { givenUnits: newBasket._id },
       });
     } else {
-      const updateUnits = await User.findByIdAndUpdate(currentUser, {
+      // if the basket has more than one product add it to user's given baskets array
+      const updateBaskets = await User.findByIdAndUpdate(currentUser, {
         $push: { givenBaskets: newBasket._id },
       });
     }
@@ -84,22 +86,27 @@ router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
   const currentUserType = req.payload.userType;
 
   try {
+    // checking type of user
     if (currentUserType === "Donor") {
+      // add changes to the basket
       const updatedBasket = await Basket.findByIdAndUpdate(
         id,
         { products, price },
         { new: true }
       );
     } else {
-      const goodsReceiver = await User.findByIdAndUpdate(currentUser, {
-        $push: { receiver: id },
+      // add a user to the basket that is received
+      const goodsReceiver = await Basket.findByIdAndUpdate(id, {
+        $push: { receiver: currentUser },
       });
 
       if (products.length !== 1) {
+        // if the basket has more than one product add it to the received basket in the user profile
         const basketReceived = await User.findByIdAndUpdate(currentUser, {
           $push: { receivedBaskets: id },
         });
       } else {
+        // if the basket has one product add it to the received units in the user profile
         const unitReceived = await User.findByIdAndUpdate(currentUser, {
           $push: { receivedUnits: id },
         });
