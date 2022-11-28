@@ -140,7 +140,22 @@ router.get("/market/:id/baskets", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const marketBaskets = await Market.findById(id).populate("basket");
+    const marketBaskets = await Market.findById(id)
+    .populate({ 
+      path: 'basket',
+      populate: {
+        path: 'products',
+        model: 'Basket',
+      } 
+   })
+    /* .populate('basket products')
+    .populate({
+      path: "basket",
+      populate: {
+        path: "products",
+        model: "Basket", */
+    /*   },
+    }); */
 
     res.status(200).json(marketBaskets);
   } catch (error) {
