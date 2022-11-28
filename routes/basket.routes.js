@@ -25,6 +25,16 @@ router.post("/create/product", isAuthenticated, async (req, res, next) => {
   }
 });
 
+router.get("/products", isAuthenticated, async (req, res, next) => {
+  try {
+    const allProducts = await Product.find();
+
+    res.status(200).json(allProducts);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/basket", isAuthenticated, async (req, res, next) => {
   const { basketType, market, products, received, price, giver, receiver } =
     req.body;
@@ -140,14 +150,13 @@ router.get("/market/:id/baskets", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const marketBaskets = await Market.findById(id)
-    .populate({ 
-      path: 'basket',
+    const marketBaskets = await Market.findById(id).populate({
+      path: "basket",
       populate: {
-        path: 'products',
-        model: 'Basket',
-      } 
-   })
+        path: "products",
+        model: "Basket",
+      },
+    });
     /* .populate('basket products')
     .populate({
       path: "basket",

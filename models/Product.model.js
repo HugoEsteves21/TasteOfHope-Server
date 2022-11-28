@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const productSchema = new Schema(
   {
@@ -25,7 +25,8 @@ const productSchema = new Schema(
     },
     imageUrl: {
       type: String,
-      default: 'https://images.pexels.com/photos/7263016/pexels-photo-7263016.jpeg',
+      default:
+        "https://images.pexels.com/photos/7263016/pexels-photo-7263016.jpeg",
     },
   },
   {
@@ -33,4 +34,4 @@ const productSchema = new Schema(
   }
 );
 
-module.exports = model('Product', productSchema);
+module.exports = model("Product", productSchema);
