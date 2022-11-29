@@ -16,10 +16,22 @@ router.post("/create/market", isAuthenticated, async (req, res, next) => {
 });
 
 router.post("/create/product", isAuthenticated, async (req, res, next) => {
+  const data = ({ name, packageSize, price, expirationDate, brand, category } =
+    req.body);
   try {
-    const productsDb = await Product.create(req.body);
+    const productsDb = await Product.create(data);
 
     res.status(201).json(productsDb);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/markets", isAuthenticated, async (req, res, next) => {
+  try {
+    const allMarkets = await Market.find();
+
+    res.status(200).json(allMarkets);
   } catch (error) {
     next(error);
   }
@@ -47,10 +59,10 @@ router.post("/basket", isAuthenticated, async (req, res, next) => {
       basketType,
       market,
       products,
-      received,
+      received: false,
       price,
-      giver,
-      receiver,
+      /* giver,
+      receiver, */
     });
 
     // adding the basket to the market where it is created
@@ -150,13 +162,12 @@ router.get("/market/:id/baskets", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const marketBaskets = await Market.findById(id).populate({
-      path: "basket",
-      populate: {
-        path: "products",
-        model: "Basket",
-      },
-    });
+    const marketBaskets = await Market.findById(id)
+      .populate("basket")
+      .populate({
+        path: "basket",
+        populate: { path: "products", model: "Product" },
+      });
     /* .populate('basket products')
     .populate({
       path: "basket",
