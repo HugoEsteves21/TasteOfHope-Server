@@ -98,6 +98,8 @@ router.put("/basket/:id", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
   const { products, price, received } = req.body;
 
+  console.log(received);
+
   const currentUser = req.payload._id;
   const currentUserType = req.payload.userType;
 
