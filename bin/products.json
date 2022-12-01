@@ -1,0 +1,299 @@
+[
+        {
+            "name": "Pasta 1/2kg",
+            "packageSize": "500g",
+            "price": 1.00,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Pasta 1kg",
+            "packageSize": "1kg",
+            "price": 1.30,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Tuna",
+            "packageSize": "120g",
+            "price": 1.20,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Sausages",
+            "packageSize": "10 units",
+            "price": 0.70,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Mushrooms",
+            "packageSize": "355g",
+            "price": 1,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Mushrooms",
+            "packageSize": "780g",
+            "price": 1.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Butter Cookies",
+            "packageSize": "450g",
+            "price": 4.70,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Olive Oil",
+            "packageSize": "75cl",
+            "price": 4.20,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Vegetable Oil",
+            "packageSize": "1L",
+            "price": 2.30,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Rice",
+            "packageSize": "1Kg",
+            "price": 1.50,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Sugar",
+            "packageSize": "1Kg",
+            "price": 1.40,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Salt",
+            "packageSize": "1Kg",
+            "price": 0.25,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Manhãzitos",
+            "packageSize": "8 units",
+            "price": 2.40,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Butter",
+            "packageSize": "250g",
+            "price": 1.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Maria Cookies",
+            "packageSize": "800g",
+            "price": 1.50,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Tomatoes",
+            "packageSize": "390g",
+            "price": 0.90,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Cookies Chips Ahoy",
+            "packageSize": "160g",
+            "price": 2,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Chips",
+            "packageSize": "200g",
+            "price": 1.30,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Chocolate Cookies",
+            "packageSize": "500g",
+            "price": 1.40,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Flour",
+            "packageSize": "1Kg",
+            "price": 1.30,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Sweet Corn",
+            "packageSize": "300g",
+            "price": 1.15,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Milk",
+            "packageSize": "1L",
+            "price": 0.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Filipinos",
+            "packageSize": "150g",
+            "price": 0.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Chocolate Cereals",
+            "packageSize": "1Kg",
+            "price": 3.50,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Honey",
+            "packageSize": "500g",
+            "price": 3.50,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Sardines",
+            "packageSize": "120g",
+            "price": 1.30,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Rice Cookies",
+            "packageSize": "130g",
+            "price": 1.50,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Strawbery Jam",
+            "packageSize": "500g",
+            "price": 2.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Corn Flakes",
+            "packageSize": "500g",
+            "price": 1.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Canned Chick Peas",
+            "packageSize": "260g",
+            "price": 0.75,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Chocolate Bar",
+            "packageSize": "100g",
+            "price": 0.60,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "White Chocolate Bar",
+            "packageSize": "100g",
+            "price": 0.75,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        },
+        {
+            "name": "Coffee",
+            "packageSize": "200g",
+            "price": 2.80,
+            "expirationDate": "",
+            "brand": "",
+            "category": "",
+            "imageUrl": ""
+        }
+]
