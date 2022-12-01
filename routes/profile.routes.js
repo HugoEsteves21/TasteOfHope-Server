@@ -9,8 +9,16 @@ router.get("/profile/:id", isAuthenticated, async (req, res, next) => {
     const userProfile = await User.findById(id)
       .populate("givenBaskets")
       .populate("givenUnits")
+      .populate("receivedUnits")
+      .populate({
+        path: "receivedUnits",
+        populate: { path: "market", model: 'Market'},
+      })
       .populate("receivedBaskets")
-      .populate("receivedUnits");
+      .populate({
+        path: "receivedBaskets",
+        populate: { path: "market", model: "Market" },
+      });
 
     res.status(200).json(userProfile);
   } catch (error) {
